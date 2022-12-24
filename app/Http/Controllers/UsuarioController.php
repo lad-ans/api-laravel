@@ -51,7 +51,7 @@ class UsuarioController extends Controller
     
                 return response()->json(["status_code" => 200, "success" => true, "data" => $result]);
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -85,7 +85,7 @@ class UsuarioController extends Controller
                 $usuarioResult = Usuario::where('DS_LOGIN_USIG', $request->DS_LOGIN_USIG)->first();
 
                 if ($usuarioResult) {
-                    throw response(
+                    return response(
                         [
                             "success" => false,
                             "status_code" => 500,
@@ -126,7 +126,7 @@ class UsuarioController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -169,7 +169,7 @@ class UsuarioController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            throw response(
+            return response(
                 [
                     "success" => false,
                     "status_code" => 500,

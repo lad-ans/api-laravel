@@ -51,7 +51,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -98,7 +98,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -145,7 +145,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -192,7 +192,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -244,7 +244,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -281,7 +281,7 @@ class HomeController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            throw response(
+            return response(
                 [
                     "success" => false,
                     "status_code" => 500,
@@ -338,7 +338,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -385,7 +385,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -442,7 +442,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -500,7 +500,7 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                throw response(
+                return response(
                     [
                         "success" => false,
                         "status_code" => 500,
@@ -534,7 +534,7 @@ class HomeController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            throw response(
+            return response(
                 [
                     "success" => false,
                     "status_code" => 500,
