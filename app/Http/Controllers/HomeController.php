@@ -16,17 +16,20 @@ use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
 
-    public function obterIndicacoesSucesso($idUsuario)
+    public function obterIndicacoesSucesso(Request $request)
     {
-        $rules = array("FK_USUARIO_ISIG" => "required");
-        $validator = Validator::make(["FK_USUARIO_ISIG" => $idUsuario], $rules);
+        $rules = array(
+            "FK_USUARIO_ISIG" => "required",
+            "FK_ESTABELECIMENTO_ISIG" => "required",
+        );
+
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
-        } else {
 
             try {
-                $result = IndicacaoSucesso::where("FK_USUARIO_ISIG", $idUsuario)->get();
+                $result = IndicacaoSucesso::where("FK_USUARIO_ISIG", $request->FK_USUARIO_ISIG)->where("FK_ESTABELECIMENTO_ISIG", $request->FK_ESTABELECIMENTO_ISIG)->get();
 
                 if ($result) {
                     return response(
@@ -48,11 +51,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -60,17 +63,20 @@ class HomeController extends Controller
         }
     }
 
-    public function obterIndicacoesSemSucesso($idUsuario)
+    public function obterIndicacoesSemSucesso(Request $request)
     {
-        $rules = array("FK_USUARIO_IXIG" => "required");
-        $validator = Validator::make(["FK_USUARIO_IXIG" => $idUsuario], $rules);
+        $rules = array(
+            "FK_USUARIO_IXIG" => "required",
+            "FK_ESTABELECIMENTO_IXIG" => "required",
+        );
+
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
-        } else {
 
             try {
-                $result = IndicacaoSemSucesso::where("FK_USUARIO_IXIG", $idUsuario)->get();
+                $result = IndicacaoSemSucesso::where("FK_USUARIO_IXIG", $request->FK_USUARIO_IXIG)->where("FK_ESTABELECIMENTO_IXIG", $request->FK_ESTABELECIMENTO_IXIG)->get();
 
                 if ($result) {
                     return response(
@@ -92,11 +98,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -104,17 +110,20 @@ class HomeController extends Controller
         }
     }
 
-    public function obterIndicacoesAguardando($idUsuario)
+    public function obterIndicacoesAguardando(Request $request)
     {
-        $rules = array("FK_USUARIO_IAIG" => "required");
-        $validator = Validator::make(["FK_USUARIO_IAIG" => $idUsuario], $rules);
+        $rules = array(
+            "FK_USUARIO_IAIG" => "required",
+            "FK_ESTABELECIMENTO_IAIG" => "required",
+        );
+
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
-        } else {
 
             try {
-                $result = IndicacaoAguardando::where("FK_USUARIO_IAIG", $idUsuario)->get();
+                $result = IndicacaoAguardando::where("FK_USUARIO_IAIG", $request->FK_USUARIO_IAIG)->where("FK_ESTABELECIMENTO_IAIG", $request->FK_ESTABELECIMENTO_IAIG)->get();
 
                 if ($result) {
                     return response(
@@ -136,11 +145,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -148,17 +157,20 @@ class HomeController extends Controller
         }
     }
 
-    public function obterIndicacoesJson($idUsuario)
+    public function obterIndicacoesJson(Request $request)
     {
-        $rules = array("FK_USUARIO_IJIG" => "required");
-        $validator = Validator::make(["FK_USUARIO_IJIG" => $idUsuario], $rules);
+        $rules = array(
+            "FK_USUARIO_IJIG" => "required",
+            "FK_ESTABELECIMENTO_IJIG" => "required",
+        );
+
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
-        } else {
 
             try {
-                $result = IndicacaoJson::where("FK_USUARIO_IJIG", $idUsuario)->get();
+                $result = IndicacaoJson::where("FK_USUARIO_IJIG", $request->FK_USUARIO_IJIG)->where("FK_ESTABELECIMENTO_IJIG", $request->FK_ESTABELECIMENTO_IJIG)->get();
 
                 if ($result) {
                     return response(
@@ -180,11 +192,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -232,11 +244,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -269,11 +281,11 @@ class HomeController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            response(
+            throw response(
                 [
                     "success" => false,
                     "status_code" => 500,
-                    "message" => $$th
+                    "message" => $th
                 ],
                 500
             );
@@ -326,11 +338,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -373,11 +385,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -430,11 +442,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -488,11 +500,11 @@ class HomeController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -522,11 +534,11 @@ class HomeController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            response(
+            throw response(
                 [
                     "success" => false,
                     "status_code" => 500,
-                    "message" => $$th
+                    "message" => $th
                 ],
                 500
             );

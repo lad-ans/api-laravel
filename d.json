@@ -1,8 +1,0 @@
-{
-    "PK_INDICACAO_SUCESSO_ISIG": 1,
-    "FK_USUARIO_ISIG": 1,
-    "FK_ESTABELECIMENTO_ISIG": 1,
-    "DS_NOME_ISIG": "",
-    "DS_CELULAR_ISIG": "",
-    "DT_INDICACAO_ISIG": ""
-}

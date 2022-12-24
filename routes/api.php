@@ -41,20 +41,20 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     /// ******* INDICAÇÕES *******
     //obter indicacoes-sucesso relacionadas ao usuário
-    //@param {int idUsuario?}
-    Route::get('indicacoes/sucesso/{idUsuario}', [HomeController::class, 'obterIndicacoesSucesso']);
+    //@param {json}
+    Route::get('indicacoes/sucesso', [HomeController::class, 'obterIndicacoesSucesso']);
     
     //obter indicacoes-sem-sucesso relacionadas ao usuário 
-    //@param {int idUsuario?}
-    Route::get('indicacoes/sem-sucesso/{idUsuario}', [HomeController::class, 'obterIndicacoesSemSucesso']);
+    //@param {json}
+    Route::get('indicacoes/sem-sucesso', [HomeController::class, 'obterIndicacoesSemSucesso']);
     
     //obter indicacoes-aguardando relacionadas ao usuário
-    //@param {int idUsuario?}
-    Route::get('indicacoes/aguardando/{idUsuario}', [HomeController::class, 'obterIndicacoesAguardando']);
+    //@param {json}
+    Route::get('indicacoes/aguardando', [HomeController::class, 'obterIndicacoesAguardando']);
     
     //obter indicacoesjson relacionadas ao usuário
-    //@param {int idUsuario?}
-    Route::get('indicacoes/json/{idUsuario}', [HomeController::class, 'obterIndicacoesJson']);
+    //@param {json}
+    Route::get('indicacoes/json', [HomeController::class, 'obterIndicacoesJson']);
     
     //faz o post de indicações json
     Route::post('indicacoes/json', [HomeController::class, 'postIndicacoesJson']);

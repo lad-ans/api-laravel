@@ -17,8 +17,8 @@ class EstabelecimentoController extends Controller
             "DS_NOMEBANCO_ETIG" => "required",
             "DS_USERBANCO_ETIG" => "required",
             "DS_NOME_ETIG" => "required",
-            "DS_IMAGEM_URL_ETIG" => "required",
-            "DS_IMAGEM_COVER_URL_ETIG" => "required",
+            "DS_LOGOIMG_URL_ETIG" => "required",
+            "DS_FOTO_URL_ETIG" => "required",
             "DS_TERMO_ACEITACAO_ETIG" => "required",
             "DS_BIO_ETIG" => "required",
         );
@@ -36,14 +36,23 @@ class EstabelecimentoController extends Controller
     
                 $estabelecimento->DS_NOME_ETIG = $request->DS_NOME_ETIG;
                 $estabelecimento->DS_BIO_ETIG = $request->DS_BIO_ETIG;
-                $estabelecimento->DS_IMAGEM_URL_ETIG = $request->DS_IMAGEM_URL_ETIG;
-                $estabelecimento->DS_IMAGEM_COVER_URL_ETIG = $request->DS_IMAGEM_COVER_URL_ETIG;
+                $estabelecimento->DS_LOGOIMG_URL_ETIG = $request->DS_LOGOIMG_URL_ETIG;
+                $estabelecimento->DS_FOTO_URL_ETIG = $request->DS_FOTO_URL_ETIG;
                 $estabelecimento->DS_TERMO_ACEITACAO_ETIG = $request->DS_TERMO_ACEITACAO_ETIG;
                 $estabelecimento->DS_PORTBANCO_ETIG = $request->DS_PORTBANCO_ETIG;
                 $estabelecimento->DS_HOSTBANCO_ETIG = $request->DS_HOSTBANCO_ETIG;
                 $estabelecimento->DS_NOMEBANCO_ETIG = $request->DS_NOMEBANCO_ETIG;
                 $estabelecimento->DS_USERBANCO_ETIG = $request->DS_USERBANCO_ETIG;
                 $estabelecimento->DS_SENHABANCO_ETIG = $senhaBanco ? $senhaBanco : "";
+                $estabelecimento->DS_CORTITULO_ETIG =  $request->DS_CORTITULO_ETIG;
+                $estabelecimento->DS_CORICONE_ETIG =  $request->DS_CORICONE_ETIG;
+                $estabelecimento->DS_TITULO_PONTOS_ETIG =  $request->DS_TITULO_PONTOS_ETIG;
+                $estabelecimento->DS_TXTPONTOS_ETIG =  $request->DS_TXTPONTOS_ETIG;
+                $estabelecimento->DS_TITULO_SUCESSO_ETIG =  $request->DS_TITULO_SUCESSO_ETIG;
+                $estabelecimento->DS_TXTSUCESSO_ETIG =  $request->DS_TXTSUCESSO_ETIG;
+                $estabelecimento->DS_TITULO_AGUARDANDO_ETIG =  $request->DS_TITULO_AGUARDANDO_ETIG;
+                $estabelecimento->DS_TXTAGUARDANDO_ETIG =  $request->DS_TXTAGUARDANDO_ETIG;
+                $estabelecimento->DS_TXTSUCESSO_INDICACAO_ETIG =  $request->DS_TXTSUCESSO_INDICACAO_ETIG;
                 $estabelecimento->DT_CADASTRO_ETIG = date('Y-m-d H:i:s');
     
                 $result = $estabelecimento->save();
@@ -64,11 +73,11 @@ class EstabelecimentoController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -105,11 +114,11 @@ class EstabelecimentoController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            response(
+            throw response(
                 [
                     "success" => false,
                     "status_code" => 500,
-                    "message" => $$th
+                    "message" => $th
                 ],
                 500
             );

@@ -14,14 +14,14 @@ class UsuarioController extends Controller
 {
     public function login(Request $request)
     {
-        $rules = array("DS_EMAIL_USIG" => "required", "DS_SENHA_USIG" => "required");
+        $rules = array("DS_LOGIN_USIG" => "required", "DS_SENHA_USIG" => "required");
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
         } else {
             try {
-                $usuario = Usuario::where('DS_EMAIL_USIG', $request->DS_EMAIL_USIG)->first();
+                $usuario = Usuario::where('DS_LOGIN_USIG', $request->DS_LOGIN_USIG)->first();
                 $est = $usuario ? Estabelecimento::where('PK_ESTABELECIMENTO_ETIG', $usuario->FK_ESTABELECIMENTO_USIG)->first() : null;
     
                 if (!$usuario || !Hash::check($request->DS_SENHA_USIG, $usuario->DS_SENHA_USIG)) {
@@ -51,11 +51,11 @@ class UsuarioController extends Controller
     
                 return response()->json(["status_code" => 200, "success" => true, "data" => $result]);
             } catch (\Throwable $th) {
-                response(
+                throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -82,6 +82,19 @@ class UsuarioController extends Controller
         } else {
 
             try {
+                $usuarioResult = Usuario::where('DS_LOGIN_USIG', $request->DS_LOGIN_USIG)->first();
+
+                if ($usuarioResult) {
+                    throw response(
+                        [
+                            "success" => false,
+                            "status_code" => 500,
+                            "message" => "Este usuário existe em nossos registros. Por favor, escolha outro!"
+                        ],
+                        500
+                    );
+                }
+
                 $usuario = new Usuario();
     
                 $usuario->FK_ESTABELECIMENTO_USIG = $request->FK_ESTABELECIMENTO_USIG;
@@ -113,11 +126,11 @@ class UsuarioController extends Controller
                     );
                 }
             } catch (\Throwable $th) {
-                response(
+                throw throw response(
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $$th
+                        "message" => $th
                     ],
                     500
                 );
@@ -156,11 +169,11 @@ class UsuarioController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            response(
+            throw response(
                 [
                     "success" => false,
                     "status_code" => 500,
-                    "message" => $$th
+                    "message" => $th
                 ],
                 500
             );
