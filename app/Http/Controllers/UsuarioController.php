@@ -55,7 +55,7 @@ class UsuarioController extends Controller
                     [
                         "success" => false,
                         "status_code" => 500,
-                        "message" => $th
+                        "message" => $th->getMessage()
                     ],
                     500
                 );
@@ -173,7 +173,7 @@ class UsuarioController extends Controller
                 [
                     "success" => false,
                     "status_code" => 500,
-                    "message" => $th
+                    "message" => $th->getMessage()
                 ],
                 500
             );
