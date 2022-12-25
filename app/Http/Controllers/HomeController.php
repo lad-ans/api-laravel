@@ -9,6 +9,7 @@ use App\Models\IndicacaoSucesso;
 use App\Models\Produto;
 use App\Models\Resgate;
 use App\Models\ResgatePremio;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -309,24 +310,37 @@ class HomeController extends Controller
         } else {
 
             try {
-                $resgate = new Resgate();
+                $usuarioPontosAtualizado = Usuario::where("PK_USUARIO_USIG", $request->FK_USUARIO_RGIG)->where("FK_ESTABELECIMENTO_USIG", $request->FK_ESTABELECIMENTO_RGIG)->update(["NR_PONTOS_USIG" => 0]);
 
-                $resgate->FK_USUARIO_RGIG = $request->FK_USUARIO_RGIG;
-                $resgate->FK_ESTABELECIMENTO_RGIG = $request->FK_ESTABELECIMENTO_RGIG;
-                $resgate->NR_PONTOS_RGIG = $request->NR_PONTOS_RGIG;
-                $resgate->DS_STATUS_RGIG = $request->DS_STATUS_RGIG;
-
-                $result = $resgate->save();
-
-                if ($result) {
-                    return response(
-                        [
-                            "status_code" => 200,
-                            "success" => true,
-                            "message" => "Resgate feito com sucesso."
-                        ],
-                        200
-                    );
+                if ($usuarioPontosAtualizado) {
+                    $resgate = new Resgate();
+    
+                    $resgate->FK_USUARIO_RGIG = $request->FK_USUARIO_RGIG;
+                    $resgate->FK_ESTABELECIMENTO_RGIG = $request->FK_ESTABELECIMENTO_RGIG;
+                    $resgate->NR_PONTOS_RGIG = $request->NR_PONTOS_RGIG;
+                    $resgate->DS_STATUS_RGIG = $request->DS_STATUS_RGIG;
+    
+                    $result = $resgate->save();
+    
+                    if ($result) {
+                        return response(
+                            [
+                                "status_code" => 200,
+                                "success" => true,
+                                "message" => "Resgate feito com sucesso."
+                            ],
+                            200
+                        );
+                    } else {
+                        return response(
+                            [
+                                "status_code" => 500,
+                                "success" => false,
+                                "message" => "Não foi possível efetuar o resgate."
+                            ],
+                            500
+                        );
+                    }
                 } else {
                     return response(
                         [
