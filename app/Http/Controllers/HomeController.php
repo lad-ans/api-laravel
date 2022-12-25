@@ -78,7 +78,7 @@ class HomeController extends Controller
             try {
                 $result = IndicacaoSemSucesso::where("FK_USUARIO_IXIG", $request->FK_USUARIO_IXIG)->where("FK_ESTABELECIMENTO_IXIG", $request->FK_ESTABELECIMENTO_IXIG)->get();
 
-                if ($result) {
+                if ($result && !empty($result)) {
                     return response(
                         [
                             "success" => true,
@@ -125,7 +125,7 @@ class HomeController extends Controller
             try {
                 $result = IndicacaoAguardando::where("FK_USUARIO_IAIG", $request->FK_USUARIO_IAIG)->where("FK_ESTABELECIMENTO_IAIG", $request->FK_ESTABELECIMENTO_IAIG)->get();
 
-                if ($result) {
+                if ($result && !empty($result)) {
                     return response(
                         [
                             "success" => true,
