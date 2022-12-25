@@ -9,6 +9,7 @@ use App\Models\IndicacaoSucesso;
 use App\Models\Produto;
 use App\Models\Resgate;
 use App\Models\ResgatePremio;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -204,11 +205,11 @@ class HomeController extends Controller
         
     }
 
-    public function postIndicacoesJson(Request $requestuest)
+    public function postIndicacoesJson(Request $request)
     {
 
         $rules = array("FK_USUARIO_IJIG" => "required", "TX_JSON_IJIG" => "required");
-        $validator = Validator::make($requestuest->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
@@ -217,9 +218,9 @@ class HomeController extends Controller
             try {
                 $indicacaoJson = new IndicacaoJson();
 
-                $indicacaoJson->FK_USUARIO_IJIG = $requestuest->FK_USUARIO_IJIG;
-                $indicacaoJson->FK_ESTABELECIMENTO_IJIG = $requestuest->FK_ESTABELECIMENTO_IJIG;
-                $indicacaoJson->TX_JSON_IJIG = $requestuest->TX_JSON_IJIG;;
+                $indicacaoJson->FK_USUARIO_IJIG = $request->FK_USUARIO_IJIG;
+                $indicacaoJson->FK_ESTABELECIMENTO_IJIG = $request->FK_ESTABELECIMENTO_IJIG;
+                $indicacaoJson->TX_JSON_IJIG = $request->TX_JSON_IJIG;;
                 $indicacaoJson->DT_INDICACAO_IJIG = date('Y-m-d H:i:s');
 
                 $result = $indicacaoJson->save();
@@ -292,7 +293,7 @@ class HomeController extends Controller
         }
     }
 
-    public function postResgate(Request $requestuest)
+    public function postResgatePontos(Request $request)
     {
 
         $rules = array(
@@ -302,7 +303,7 @@ class HomeController extends Controller
             "DS_STATUS_RGIG" => "required"
         );
 
-        $validator = Validator::make($requestuest->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
@@ -311,10 +312,10 @@ class HomeController extends Controller
             try {
                 $resgate = new Resgate();
 
-                $resgate->FK_USUARIO_RGIG = $requestuest->FK_USUARIO_RGIG;
-                $resgate->FK_ESTABELECIMENTO_RGIG = $requestuest->FK_ESTABELECIMENTO_RGIG;
-                $resgate->NR_PONTOS_RGIG = $requestuest->NR_PONTOS_RGIG;
-                $resgate->DS_STATUS_RGIG = $requestuest->DS_STATUS_RGIG;
+                $resgate->FK_USUARIO_RGIG = $request->FK_USUARIO_RGIG;
+                $resgate->FK_ESTABELECIMENTO_RGIG = $request->FK_ESTABELECIMENTO_RGIG;
+                $resgate->NR_PONTOS_RGIG = $request->NR_PONTOS_RGIG;
+                $resgate->DS_STATUS_RGIG = $request->DS_STATUS_RGIG;
 
                 $result = $resgate->save();
 
@@ -350,54 +351,7 @@ class HomeController extends Controller
         }
     }
 
-    public function putResgate(Request $requestuest, $id)
-    {
-        $rules = array(
-            "DS_STATUS_RGIG" => "required"
-        );
-
-        $validator = Validator::make($requestuest->all(), $rules);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 500);
-        } else {
-
-            try {
-                $result = Resgate::where("PK_RESGATE_RGIG", $id)->update(["DS_STATUS_RGIG" => $requestuest->DS_STATUS_RGIG]);
-
-                if ($result) {
-                    return response(
-                        [
-                            "status_code" => 200,
-                            "success" => true,
-                            "message" => "Resgate atualizado com sucesso."
-                        ],
-                        200
-                    );
-                } else {
-                    return response(
-                        [
-                            "status_code" => 500,
-                            "success" => false,
-                            "message" => "Não foi possível atualizar o resgate."
-                        ],
-                        500
-                    );
-                }
-            } catch (\Throwable $th) {
-                return response(
-                    [
-                        "success" => false,
-                        "status_code" => 500,
-                        "message" => $th->getMessage()
-                    ],
-                    500
-                );
-            }
-        }
-    }
-
-    public function postResgatePremio(Request $requestuest)
+    public function postResgatePremio(Request $request)
     {
 
         $rules = array(
@@ -406,7 +360,7 @@ class HomeController extends Controller
             "DT_PREMIACAO_RPIG" => "required",
         );
 
-        $validator = Validator::make($requestuest->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
@@ -415,10 +369,10 @@ class HomeController extends Controller
             try {
                 $resgatePremio = new ResgatePremio();
     
-                $resgatePremio->FK_USUARIO_RPIG = $requestuest->FK_USUARIO_RPIG;
-                $resgatePremio->FK_ESTABELECIMENTO_RPIG = $requestuest->FK_ESTABELECIMENTO_RPIG;
-                $resgatePremio->DS_PREMIO_RPIG = $requestuest->DS_PREMIO_RPIG;
-                $resgatePremio->DT_PREMIACAO_RPIG = $requestuest->DT_PREMIACAO_RPIG;
+                $resgatePremio->FK_USUARIO_RPIG = $request->FK_USUARIO_RPIG;
+                $resgatePremio->FK_ESTABELECIMENTO_RPIG = $request->FK_ESTABELECIMENTO_RPIG;
+                $resgatePremio->DS_PREMIO_RPIG = $request->DS_PREMIO_RPIG;
+                $resgatePremio->DT_PREMIACAO_RPIG = $request->DT_PREMIACAO_RPIG;
     
                 $result = $resgatePremio->save();
     
@@ -512,12 +466,12 @@ class HomeController extends Controller
         }
     }
 
-    public function upload(Request $requestuest): string
+    public function upload(Request $request): string
     {
         try {
-            $name = $requestuest->file('imagem')->getClientOriginalName();
-            $requestuest->file('imagem')->storeAs('imagens', $name);
-            $path = $requestuest->file('imagem')->move(public_path('imagens'), $name);
+            $name = $request->file('imagem')->getClientOriginalName();
+            $request->file('imagem')->storeAs('imagens', $name);
+            $path = $request->file('imagem')->move(public_path('imagens'), $name);
     
             $url = URL::asset('imagens/' . $name);
     

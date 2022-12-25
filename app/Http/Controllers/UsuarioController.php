@@ -179,4 +179,53 @@ class UsuarioController extends Controller
             );
         }
     }
+
+    public function putPontosUsuario(Request $request)
+    {
+        $rules = array(
+            "PK_USUARIO_USIG" => "required",
+            "FK_ESTABELECIMENTO_USIG" => "required",
+            "NR_PONTOS_USIG" => "required",
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 500);
+        } else {
+
+            try {
+                $result = Resgate::where("PK_USUARIO_USIG", $request->PK_USUARIO_USIG)->where("FK_ESTABELECIMENTO_USIG", $request->FK_ESTABELECIMENTO_USIG)->update(["NR_PONTOS_USIG" => $request->NR_PONTOS_USIG]);
+
+                if ($result) {
+                    return response(
+                        [
+                            "status_code" => 200,
+                            "success" => true,
+                            "message" => "Pontos atualizados com sucesso."
+                        ],
+                        200
+                    );
+                } else {
+                    return response(
+                        [
+                            "status_code" => 500,
+                            "success" => false,
+                            "message" => "Não foi possível atualizar os pontos."
+                        ],
+                        500
+                    );
+                }
+            } catch (\Throwable $th) {
+                return response(
+                    [
+                        "success" => false,
+                        "status_code" => 500,
+                        "message" => $th->getMessage()
+                    ],
+                    500
+                );
+            }
+        }
+    }
 }

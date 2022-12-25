@@ -10,36 +10,46 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/// ******* USUÁRIO *******
+/// USUÁRIO
+///
 //login
 Route::post('login', [UsuarioController::class, 'login']);
 //cadastro
 Route::post('registar', [UsuarioController::class, 'registar']);
 
-/// ******* ESTABELECIMENTO *******
+/// ESTABELECIMENTO
+///
 //cadastrar estabelecimento
 Route::post('registar-estabelecimento', [EstabelecimentoController::class, 'registar']);
 
-/// ******* UPLOAD *******
+/// UPLOAD
+///
 //carregar ficheiro(imagem do estabelecimento) e retorna url
 Route::post('upload', [HomeController::class, 'upload']);
 
 /// Rotas com proteção de autenticação
 Route::group(['middleware' => 'auth:sanctum'], function () {
     
-    /// ******* USUÁRIO *******
+    /// USUÁRIO
+    ///
     //obter usuário (se passar o idUsuario depois da barra, obtem o usuário relacionado ao ID, 
     //se não passar nada, obtém todos usuários) - ex: urlBase/usuarios/2 => retorna 1 usuário. urlBase/usuarios => todos
     //@param {int idUsuario?}
     Route::get('usuarios/{idUsuario?}', [UsuarioController::class, 'obter']);
 
-    // ******* ESTABELECIMENTO *******
+    //atualiza os pontos do usuário
+    //@param {json}
+    Route::put('usuarios/pontos', [UsuarioController::class, 'putPontosUsuario']);
+
+    // ESTABELECIMENTO
+    ///
     //obter estabelecimento (se passar o idEstabelecimento depois da barra, obtem o estabelecimento relacionado ao ID, 
     //se não passar nada, obtém todos estabelecimentos) - ex: urlBase/estabelecimentos/4 => retorna 1 estabelecimento. urlBase/estabelecimentos => todos
     //@param {int idEstabelecimento?}
     Route::get('estabelecimentos/{idEstabelecimento?}', [UsuarioController::class, 'obter']);
 
-    /// ******* INDICAÇÕES *******
+    /// INDICAÇÕES
+    ///
     //obter indicacoes-sucesso relacionadas ao usuário
     //@param {json}
     Route::get('indicacoes/sucesso', [HomeController::class, 'obterIndicacoesSucesso']);
@@ -59,21 +69,19 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //faz o post de indicações json
     Route::post('indicacoes/json', [HomeController::class, 'postIndicacoesJson']);
     
-    /// ******* RESGATES *******
+    /// RESGATES
+    ///
     //obter premios relacionadas ao usuário e estabelecimento
     Route::get('resgates/premio', [HomeController::class, 'obterPremios']);
     
     //faz post de resgate (pontos)
-    Route::post('resgates', [HomeController::class, 'postResgate']);
-    
-    //atualiza status de resgate (pontos) para 'r' ou 'nr' (r: resgatado; nr: não-resgatado)
-    //@param {int id?}
-    Route::put('resgates/{id?}', [HomeController::class, 'putResgate']);
+    Route::post('resgates/pontos', [HomeController::class, 'postResgatePontos']);
     
     //faz post de resgate de prémios (pontos)
     Route::post('resgates/premio', [HomeController::class, 'postResgatePremio']);
 
-    /// ******* PRODUTOS *******
+    /// PRODUTOS
+    ///
     //obter produtos relacionadas ao estabelecimento
     //@param {int idEst?}
     Route::get('produtos/{idEst?}', [HomeController::class, 'obterProdutos']);
