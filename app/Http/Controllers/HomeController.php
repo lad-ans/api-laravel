@@ -9,7 +9,6 @@ use App\Models\IndicacaoSucesso;
 use App\Models\Produto;
 use App\Models\Resgate;
 use App\Models\ResgatePremio;
-use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;

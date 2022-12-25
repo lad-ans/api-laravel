@@ -195,7 +195,7 @@ class UsuarioController extends Controller
         } else {
 
             try {
-                $result = Resgate::where("PK_USUARIO_USIG", $request->PK_USUARIO_USIG)->where("FK_ESTABELECIMENTO_USIG", $request->FK_ESTABELECIMENTO_USIG)->update(["NR_PONTOS_USIG" => $request->NR_PONTOS_USIG]);
+                $result = Usuario::where("PK_USUARIO_USIG", $request->PK_USUARIO_USIG)->where("FK_ESTABELECIMENTO_USIG", $request->FK_ESTABELECIMENTO_USIG)->update(["NR_PONTOS_USIG" => $request->NR_PONTOS_USIG]);
 
                 if ($result) {
                     return response(
