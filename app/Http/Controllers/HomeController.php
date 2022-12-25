@@ -27,16 +27,15 @@ class HomeController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
-
+        } else {
             try {
                 $result = IndicacaoSucesso::where("FK_USUARIO_ISIG", $request->FK_USUARIO_ISIG)->where("FK_ESTABELECIMENTO_ISIG", $request->FK_ESTABELECIMENTO_ISIG)->get();
-
                 if ($result) {
                     return response(
                         [
                             "success" => true,
                             "status_code" => 200,
-                            "data" => "Ladino"
+                            "data" => $result
                         ],
                         200
                     );
@@ -74,11 +73,11 @@ class HomeController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
-
+        } else {
             try {
                 $result = IndicacaoSemSucesso::where("FK_USUARIO_IXIG", $request->FK_USUARIO_IXIG)->where("FK_ESTABELECIMENTO_IXIG", $request->FK_ESTABELECIMENTO_IXIG)->get();
 
-                if ($result && !empty($result)) {
+                if ($result) {
                     return response(
                         [
                             "success" => true,
@@ -121,11 +120,11 @@ class HomeController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
-
+        } else {   
             try {
                 $result = IndicacaoAguardando::where("FK_USUARIO_IAIG", $request->FK_USUARIO_IAIG)->where("FK_ESTABELECIMENTO_IAIG", $request->FK_ESTABELECIMENTO_IAIG)->get();
 
-                if ($result && !empty($result)) {
+                if ($result) {
                     return response(
                         [
                             "success" => true,
@@ -168,7 +167,7 @@ class HomeController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 500);
-
+        } else {
             try {
                 $result = IndicacaoJson::where("FK_USUARIO_IJIG", $request->FK_USUARIO_IJIG)->where("FK_ESTABELECIMENTO_IJIG", $request->FK_ESTABELECIMENTO_IJIG)->get();
 
@@ -202,6 +201,7 @@ class HomeController extends Controller
                 );
             }
         }
+        
     }
 
     public function postIndicacoesJson(Request $requestuest)
