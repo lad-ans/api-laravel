@@ -36,7 +36,7 @@ class HomeController extends Controller
                         [
                             "success" => true,
                             "status_code" => 200,
-                            "data" => $result
+                            "data" => "Ladino"
                         ],
                         200
                     );
