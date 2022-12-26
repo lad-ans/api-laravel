@@ -336,7 +336,7 @@ class HomeController extends Controller
                             [
                                 "status_code" => 500,
                                 "success" => false,
-                                "message" => "Não foi possível efetuar o resgate."
+                                "message" => "Não foi possível efetuar o resgate.:" . $result
                             ],
                             500
                         );
@@ -346,7 +346,7 @@ class HomeController extends Controller
                         [
                             "status_code" => 500,
                             "success" => false,
-                            "message" => "Não foi possível efetuar o resgate."
+                            "message" => "Não foi possível efetuar o resgate.: " . $usuarioPontosAtualizado
                         ],
                         500
                     );

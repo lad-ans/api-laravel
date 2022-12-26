@@ -97,6 +97,21 @@ curl --request GET \
   --header 'Authorization: Bearer 2|OSO4vo7ERWkoL3d2vEC09B7AIM4s7dC9sWKlk3eH'
 
 ```
+
+### ` Atualizar pontos Usuário`
+
+``` php
+curl --request PUT \
+  --url https://indique-e-ganhe-api.herokuapp.com/api/usuarios/pontos \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"PK_USUARIO_USIG": 4,
+	"FK_ESTABELECIMENTO_USIG": 4,
+	"NR_PONTOS_USIG": 4000
+}'
+
+```
 ---
 ---
 ## INDICAÇOES
