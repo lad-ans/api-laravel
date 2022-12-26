@@ -380,31 +380,43 @@ class HomeController extends Controller
         } else {
 
             try {
-                $resgatePremio = new ResgatePremio();
-    
-                $resgatePremio->FK_USUARIO_RPIG = $request->FK_USUARIO_RPIG;
-                $resgatePremio->FK_ESTABELECIMENTO_RPIG = $request->FK_ESTABELECIMENTO_RPIG;
-                $resgatePremio->DS_PREMIO_RPIG = $request->DS_PREMIO_RPIG;
-                $resgatePremio->FK_PRODUTO_RPIG = $request->FK_PRODUTO_RPIG;
-                $resgatePremio->DT_PREMIACAO_RPIG = $request->DT_PREMIACAO_RPIG;
-    
-                $result = $resgatePremio->save();
-    
-                if ($result) {
-                    return response(
-                        [
-                            "status_code" => 200,
-                            "success" => true,
-                            "message" => "Resgate do prémio feito com sucesso."
-                        ],
-                        200
-                    );
+                $hasProduto = Produto::where("", $request->FK_PRODUTO_RPIG)->first();
+                if ($hasProduto) {
+                    $resgatePremio = new ResgatePremio();
+        
+                    $resgatePremio->FK_USUARIO_RPIG = $request->FK_USUARIO_RPIG;
+                    $resgatePremio->FK_ESTABELECIMENTO_RPIG = $request->FK_ESTABELECIMENTO_RPIG;
+                    $resgatePremio->DS_PREMIO_RPIG = $request->DS_PREMIO_RPIG;
+                    $resgatePremio->FK_PRODUTO_RPIG = $request->FK_PRODUTO_RPIG;
+                    $resgatePremio->DT_PREMIACAO_RPIG = $request->DT_PREMIACAO_RPIG;
+        
+                    $result = $resgatePremio->save();
+        
+                    if ($result) {
+                        return response(
+                            [
+                                "status_code" => 200,
+                                "success" => true,
+                                "message" => "Resgate do prémio feito com sucesso."
+                            ],
+                            200
+                        );
+                    } else {
+                        return response(
+                            [
+                                "status_code" => 500,
+                                "success" => false,
+                                "message" => "Não foi possível efetuar o resgate do prémio."
+                            ],
+                            500
+                        );
+                    }
                 } else {
                     return response(
                         [
                             "status_code" => 500,
                             "success" => false,
-                            "message" => "Não foi possível efetuar o resgate do prémio."
+                            "message" => "Não foi encontrado nenhum produto associado ao ID."
                         ],
                         500
                     );
