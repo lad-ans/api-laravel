@@ -148,8 +148,6 @@ class UsuarioController extends Controller
             }
     
             if ($result) {
-                $pontosResult = Resgate::where("FK_USUARIO_RGIG", $idUsuario)->first();
-                $result->NR_PONTOS_USIG = $pontosResult->NR_PONTOS_RGIG;
                 return response(
                     [
                         "success" => true,
