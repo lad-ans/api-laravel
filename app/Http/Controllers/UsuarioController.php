@@ -35,19 +35,11 @@ class UsuarioController extends Controller
                     );
                 }
     
-                $pontosResult = Resgate::where("FK_USUARIO_RGIG", $usuario->PK_USUARIO_USIG)->where("DS_STATUS_RGIG", "nr")->first();
-    
-                $meta = null;
-                if ($pontosResult) {
-                    $usuario->NR_PONTOS_USIG = $pontosResult->NR_PONTOS_RGIG;
-                    $meta = ["PK_RESGATE_RGIG" => $pontosResult->PK_RESGATE_RGIG];
-                }
-    
                 CustomConnection::criarNovaConexaoComBanco($est);
     
                 $token = $usuario->createToken('my-app-token')->plainTextToken;
     
-                $result = ["usuario" => $usuario, "estabelecimento" => $est, "token" => $token, "meta" => $meta];
+                $result = ["usuario" => $usuario, "estabelecimento" => $est, "token" => $token];
     
                 return response()->json(["status_code" => 200, "success" => true, "data" => $result]);
             } catch (\Throwable $th) {
@@ -104,6 +96,7 @@ class UsuarioController extends Controller
                 $usuario->DS_CELULAR_USIG = $request->DS_CELULAR_USIG;
                 $usuario->DS_LOGIN_USIG = $request->DS_LOGIN_USIG;
                 $usuario->DS_SENHA_USIG = Hash::make($request->DS_SENHA_USIG);
+                $usuario->NR_PONTOS_USIG = 0;
                 $usuario->DT_CADASTRO_USIG = date('Y-m-d H:i:s');
     
                 $result = $usuario->save();

@@ -183,8 +183,7 @@ curl --request POST \
   --data '{
 	"FK_USUARIO_RGIG": 14, 
 	"FK_ESTABELECIMENTO_RGIG": 4,
-	"NR_PONTOS_RGIG": 67,
-	"DS_STATUS_RGIG": "nr"
+	"NR_PONTOS_RGIG": 67
 }'
 ```
 ---

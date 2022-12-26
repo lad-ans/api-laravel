@@ -300,7 +300,6 @@ class HomeController extends Controller
             "FK_USUARIO_RGIG" => "required",
             "FK_ESTABELECIMENTO_RGIG" => "required",
             "NR_PONTOS_RGIG" => "required",
-            "DS_STATUS_RGIG" => "required"
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -318,7 +317,7 @@ class HomeController extends Controller
                     $resgate->FK_USUARIO_RGIG = $request->FK_USUARIO_RGIG;
                     $resgate->FK_ESTABELECIMENTO_RGIG = $request->FK_ESTABELECIMENTO_RGIG;
                     $resgate->NR_PONTOS_RGIG = $request->NR_PONTOS_RGIG;
-                    $resgate->DS_STATUS_RGIG = $request->DS_STATUS_RGIG;
+                    $resgate->DS_STATUS_RGIG = "R";
     
                     $result = $resgate->save();
     
@@ -336,7 +335,7 @@ class HomeController extends Controller
                             [
                                 "status_code" => 500,
                                 "success" => false,
-                                "message" => "Não foi possível efetuar o resgate.:" . $result
+                                "message" => "Ocorreu um erro ao efetuar o resgate de seus pontos."
                             ],
                             500
                         );
@@ -346,7 +345,7 @@ class HomeController extends Controller
                         [
                             "status_code" => 500,
                             "success" => false,
-                            "message" => "Não foi possível efetuar o resgate.: " . $usuarioPontosAtualizado
+                            "message" => "Ocorreu um erro ao atualizar os dados deste usuário."
                         ],
                         500
                     );
