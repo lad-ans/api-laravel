@@ -380,7 +380,7 @@ class HomeController extends Controller
         } else {
 
             try {
-                $hasProduto = Produto::where("", $request->FK_PRODUTO_RPIG)->first();
+                $hasProduto = Produto::where("PK_PRODUTO_PRIG", $request->FK_PRODUTO_RPIG)->first();
                 if ($hasProduto) {
                     $resgatePremio = new ResgatePremio();
         

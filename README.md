@@ -191,12 +191,14 @@ curl --request POST \
 ``` php
 curl --request POST \
   --url https://indique-e-ganhe-api.herokuapp.com/api/resgates/premio \
-  --header 'Authorization: Bearer 1084|67SpsHT9j4byYHG1QPWGRNKlc6YEAmbfY1V8ZfN4' \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
   --header 'Content-Type: application/json' \
   --data '{
-	"FK_USUARIO_RPIG": 14, 
+	"FK_USUARIO_RPIG": 4, 
 	"FK_ESTABELECIMENTO_RPIG": 4,
-	"DT_PREMIACAO_RPIG": "2022-12-18"
+	"DS_PREMIO_RPIG": "Uma manutenção básica",
+	"DT_PREMIACAO_RPIG": "2022-12-18",
+	"FK_PRODUTO_RPIG": 5
 }'
 ```
 ---
