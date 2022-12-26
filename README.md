@@ -22,10 +22,19 @@ curl --request POST \
     "DS_NOMEBANCO_ETIG": "heroku_b77be8c552d0a22",
     "DS_USERBANCO_ETIG": "b4641ccb595a27",
     "DS_SENHABANCO_ETIG": "cc15931f",
-		"DS_BIO_ETIG": "Biografia do Banco de Dados. Pellentesque porttitor, velit lacinia egestas auctor, diam eros tempus arcu, nec vulputate augue magna vel risus. Cras non magna vel ante adipiscing rhoncus. Vivamus a mi. Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis erllamcorper fringilla eros",
-		"DS_IMAGEM_URL_ETIG" : "http://indique-e-ganhe-api.herokuapp.com/imagens/profile-placeholder.jpg",
-		"DS_IMAGEM_COVER_URL_ETIG" : "http://indique-e-ganhe-api.herokuapp.com/imagens/bg.jpg",
-		"DS_TERMO_ACEITACAO_ETIG" : "Termo de Aceitação do Banco de Dados. Pellentesque porttitor, velit lacinia egestas auctor, diam eros tempus arcu, nec vulputate augue magna vel risus. Cras non magna vel ante adipiscing rhoncus. Vivamus a mi. Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper, ante vitae sollicitudin posuere, metus quam iaculis nibh, vitae scelerisque nunc massa eget pede. Sed velit urna, interdum vel, ultricies vel, faucibus at, quam. Donec elit est."
+		"DS_CORTITULO_ETIG": "242326",
+		"DS_CORICONE_ETIG": "262325",
+		"DS_TITULO_PONTOS_ETIG": "",
+		"DS_TXTPONTOS_ETIG": "",
+		"DS_TITULO_SUCESSO_ETIG": "AMIGOS",
+		"DS_TXTSUCESSO_ETIG": "indicados que viraram pacientes.",
+		"DS_TITULO_AGUARDANDO_ETIG": "AMIGOS indicados",
+		"DS_TXTAGUARDANDO_ETIG": "contato, ou não quiseram realizar o tratamento.",
+		"DS_TXTSUCESSO_INDICACAO_ETIG": "Obrigado pelas suas indicações e aceitar autorizar a compartilhar os contatos da sua agenda. \nAs suas bonificações serão realizadas diretamente pela clínica conforme as regras passadas à você. \nMUITO OBRIGADO",
+		"DS_BIO_ETIG": "Biografia do Banco de Dados. Pellentesque porttitor, velit lacinia egestas auctor, diam eros tempus arcu, nec vulputate augue magna vel risus. Cras non magna vel ante adipiscing rhoncus. Vivamus a mi. Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper, ante vitae sollicitudin posuere, metus quam iaculis nibh, vitae scelerisque nunc massa eget pede. Sed velit urna, interdum vel, ultricies vel, faucibus at, quam. Donec elit est, consectetuer eget, consequat quis, tempus quis, wisi. In in nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Donec ullamcorper fringilla eros",
+		"DS_LOGOIMG_URL_ETIG" : "http://indique-e-ganhe-api.herokuapp.com/imagens/profile-placeholder.jpg",
+		"DS_FOTO_URL_ETIG" : "http://indique-e-ganhe-api.herokuapp.com/imagens/bg.jpg",
+		"DS_TERMO_ACEITACAO_ETIG" : "Termo de Aceitação do Banco de Dados. Pellentesque porttitor, velit lacinia egestas auctor, diam eros tempus arcu, nec vulputate augue magna vel risus. Cras non magna vel ante adipiscing rhoncus. Vivamus a mi. Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper, ante vitae sollicitudin posuere, metus quam iaculis nibh, vitae scelerisque nunc massa eget pede. Sed velit urna, interdum vel, ultricies vel, faucibus at, quam. Donec elit est, consectetuer eget, consequat quis, tempus quis, wisi. In in nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Donec ullamcorper fringilla eros. Fusce in sapien eu purus dapibus commodo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras faucibus condimentum odio. Sed ac ligula. Aliquam at eros. Etiam at ligula et tellus ullamcorper ultrices. In fermentum, lorem non cursus porttitor, diam urna accumsan lacus, sed interdum wisi nibh nec nisl. Ut tincidunt volutpat urna. Mauris eleifend nulla eget mauris. Sed cursus quam id felis. Curabitur posuere quam vel nibh. Cras dapibus dapibus nisl. Vestibulum quis dolor a felis congue vehicula. Maecenas pede purus, tristique ac, tempus eget, egestas quis, mauris. Curabitur non eros. Nullam hendrerit bibendum justo. Fusce iaculis, est quis lacinia pretium, pede metus molestie lacus, at gravida wisi ante at libero."
 }'
 ```
 
@@ -33,8 +42,9 @@ curl --request POST \
 
 ``` php
 curl --request GET \
-  --url http://127.0.0.1:8000/api/estabelecimentos/ \
-  --header 'Authorization: Bearer 2|OSO4vo7ERWkoL3d2vEC09B7AIM4s7dC9sWKlk3eH'
+  --url https://indique-e-ganhe-api.herokuapp.com/api/estabelecimentos \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
+  --header 'Content-Type: application/json'
 ```
 ---
 
@@ -42,8 +52,9 @@ curl --request GET \
 
 ``` php
 curl --request GET \
-  --url http://127.0.0.1:8000/api/estabelecimentos/1 \
-  --header 'Authorization: Bearer 2|OSO4vo7ERWkoL3d2vEC09B7AIM4s7dC9sWKlk3eH'
+  --url https://indique-e-ganhe-api.herokuapp.com/api/estabelecimentos/4 \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
+  --header 'Content-Type: application/json'
 ```
 ---
 ---
@@ -53,10 +64,10 @@ curl --request GET \
 ``` php
 curl --request POST \
   --url https://indique-e-ganhe-api.herokuapp.com/api/login \
-  --header 'Authorization: Bearer 1084|67SpsHT9j4byYHG1QPWGRNKlc6YEAmbfY1V8ZfN4' \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
   --header 'Content-Type: application/json' \
   --data '{
-	"DS_EMAIL_USIG":"ladino@teste.com",
+	"DS_LOGIN_USIG":"ladino",
 	"DS_SENHA_USIG":"123"
 }'
 
@@ -83,9 +94,9 @@ curl --request POST \
 
 ``` php
 curl --request GET \
-  --url http://127.0.0.1:8000/api/usuarios/ \
-  --header 'Authorization: Bearer 2|OSO4vo7ERWkoL3d2vEC09B7AIM4s7dC9sWKlk3eH'
-
+  --url https://indique-e-ganhe-api.herokuapp.com/api/usuarios \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
+  --header 'Content-Type: application/json'
 ```
 ---
 
@@ -98,7 +109,7 @@ curl --request GET \
 
 ```
 
-### ` Atualizar pontos Usuário`
+### ` Atualizar pontos Usuário/Cliente`
 
 ``` php
 curl --request PUT \
@@ -121,52 +132,68 @@ curl --request PUT \
 ``` php
 curl --request POST \
   --url https://indique-e-ganhe-api.herokuapp.com/api/indicacoes/json \
-  --header 'Authorization: Bearer ' \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
   --header 'Content-Type: application/json' \
   --data '{ 
-	"FK_USUARIO_IJIG": 24,
+	"FK_USUARIO_IJIG": 4,
   "FK_ESTABELECIMENTO_IJIG": 4,
   "TX_JSON_IJIG":  "Indicações json"
 }'
-
 ```
 
 ---
-### ` Obter Indicações Sucesso ` => ` FK_USUARIO_ISIG `
+### ` Obter Indicações Sucesso `
 ``` php
 curl --request GET \
-  --url https://indique-e-ganhe-api.herokuapp.com/api/indicacoes/sucesso/14 \
-  --header 'Authorization: Bearer 1084|67SpsHT9j4byYHG1QPWGRNKlc6YEAmbfY1V8ZfN4' \
-  --header 'Content-Type: application/json'
+  --url https://indique-e-ganhe-api.herokuapp.com/api/indicacoes/sucesso \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"FK_USUARIO_ISIG": 4,
+	"FK_ESTABELECIMENTO_ISIG": 4
+}'
 ```
 
 ---
-### ` Obter Indicações Sem-Sucesso ` =>  ` FK_USUARIO_IXIG `
+### ` Obter Indicações Sem-Sucesso `
 
   
 ```php
 curl --request GET \
-  --url https://indique-e-ganhe-api.herokuapp.com/api/indicacoes/sem-sucesso/14 \
-  --header 'Authorization: Bearer 1084|67SpsHT9j4byYHG1QPWGRNKlc6YEAmbfY1V8ZfN4' \
-  --header 'Content-Type: application/json'
+  --url https://indique-e-ganhe-api.herokuapp.com/api/indicacoes/aguardando \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"FK_USUARIO_IXIG": 4,
+	"FK_ESTABELECIMENTO_IXIG": 4
+}'
 ```
 ---
 
-### ` Obter Indicações Aguardando ` =>   ` FK_USUARIO_IAIG `
+### ` Obter Indicações Aguardando `
 
 ```php
 curl --request GET \
-  --url https://indique-e-ganhe-api.herokuapp.com/api/indicacoes/aguardando/24 \
-  --header 'Authorization: Bearer 1084|67SpsHT9j4byYHG1QPWGRNKlc6YEAmbfY1V8ZfN4' \
-  --header 'Content-Type: application/json'
+  --url https://indique-e-ganhe-api.herokuapp.com/api/indicacoes/aguardando \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"FK_USUARIO_IAIG": 4,
+	"FK_ESTABELECIMENTO_IAIG": 4
+}'
 ```
 
-### ` Obter Indicações Json ` =>   ` FK_USUARIO_IJIG `
+### ` Obter Indicações Json `
 
 ```php
 curl --request GET \
-  --url http://127.0.0.1:8000/api/indicacoes/json/ \
-  --header 'Authorization: Bearer 2|OSO4vo7ERWkoL3d2vEC09B7AIM4s7dC9sWKlk3eH'
+  --url https://indique-e-ganhe-api.herokuapp.com/api/indicacoes/json \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"FK_USUARIO_IJIG": 4,
+	"FK_ESTABELECIMENTO_IJIG": 4
+}'
 ```
 ---
 ## RESGATES
@@ -198,7 +225,7 @@ curl --request POST \
 	"FK_ESTABELECIMENTO_RPIG": 4,
 	"DS_PREMIO_RPIG": "Uma manutenção básica",
 	"DT_PREMIACAO_RPIG": "2022-12-18",
-	"FK_PRODUTO_RPIG": 5
+	"FK_PRODUTO_RPIG": 4
 }'
 ```
 ---
@@ -210,7 +237,7 @@ curl --request GET \
   --header 'Authorization: Bearer 1084|67SpsHT9j4byYHG1QPWGRNKlc6YEAmbfY1V8ZfN4' \
   --header 'Content-Type: application/json' \
   --data '{
-	"FK_USUARIO_RPIG": 14,
+	"FK_USUARIO_RPIG": 44,
 	"FK_ESTABELECIMENTO_RPIG": 4
 }'
 ```
