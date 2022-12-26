@@ -110,7 +110,6 @@ curl --request PUT \
 	"FK_ESTABELECIMENTO_USIG": 4,
 	"NR_PONTOS_USIG": 4000
 }'
-
 ```
 ---
 ---
@@ -177,14 +176,14 @@ curl --request GET \
 
 ``` php
 curl --request POST \
-  --url https://indique-e-ganhe-api.herokuapp.com/api/resgates \
-  --header 'Authorization: Bearer 1084|67SpsHT9j4byYHG1QPWGRNKlc6YEAmbfY1V8ZfN4' \
+  --url https://indique-e-ganhe-api.herokuapp.com/api/resgates/pontos \
+  --header 'Authorization: Bearer 3984|BT8XnWeP3u8I8fdTdhUwvjbzDqeaUjs5toNDRg8I' \
   --header 'Content-Type: application/json' \
   --data '{
-	"FK_USUARIO_RGIG": 14, 
+	"FK_USUARIO_RGIG": 4, 
 	"FK_ESTABELECIMENTO_RGIG": 4,
-	"NR_PONTOS_RGIG": 67
-}'
+	"NR_PONTOS_RGIG": 400000
+}	'
 ```
 ---
 ### ` Post Resgate Prémio `

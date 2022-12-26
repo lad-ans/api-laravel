@@ -440,9 +440,10 @@ class HomeController extends Controller
     
                     foreach ($premios as $key => $premio) {
                         $produto = Produto::where("PK_PRODUTO_PRIG", $premio->FK_PRODUTO_RPIG)->first();
-                        $premio->DS_PREMIO_RPIG = $produto->DS_NOME_PRIG;
-    
-                        $premios[$key] = $premio;
+                        if ($produto) {
+                            $premio->DS_PREMIO_RPIG = $produto->DS_NOME_PRIG;
+                            $premios[$key] = $premio;
+                        }
                     }
     
                     return response(
